@@ -1,0 +1,15 @@
+import os
+
+def bulk_rename(directory, pattern, replacement):
+    for filename in os.listdir(directory):
+        if pattern in filename:
+            new_filename = filename.replace(pattern, replacement)
+            os.rename(os.path.join(directory, filename), os.path.join(directory, new_filename))
+            print(f"Renamed {filename} to {new_filename}")
+
+if __name__ == "__main__":
+    directory = input("Enter the directory path: ")
+    pattern = input("Enter the pattern to replace: ")
+    replacement = input("Enter the replacement string: ")
+    bulk_rename(directory, pattern, replacement)
+    print("Bulk rename completed.")
