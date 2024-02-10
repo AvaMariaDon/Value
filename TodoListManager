@@ -1,0 +1,36 @@
+class TodoManager:
+    def __init__(self):
+        self.todos = []
+
+    def add_task(self, task):
+        self.todos.append(task)
+
+    def view_tasks(self):
+        for index, task in enumerate(self.todos, start=1):
+            print(f"{index}. {task}")
+
+    def delete_task(self, task_number):
+        if 0 < task_number <= len(self.todos):
+            del self.todos[task_number - 1]
+            return True
+        return False
+
+if __name__ == "__main__":
+    manager = TodoManager()
+    while True:
+        action = input("Choose an action [add/view/delete/exit]: ").lower()
+        if action == "add":
+            task = input("Enter a task to add: ")
+            manager.add_task(task)
+        elif action == "view":
+            manager.view_tasks()
+        elif action == "delete":
+            task_number = int(input("Enter the task number to delete: "))
+            if manager.delete_task(task_number):
+                print("Task deleted.")
+            else:
+                print("Invalid task number.")
+        elif action == "exit":
+            break
+        else:
+            print("Invalid action.")
